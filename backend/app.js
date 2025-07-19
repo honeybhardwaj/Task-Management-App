@@ -1,0 +1,13 @@
+const express = require("express");
+const cors = require("cors");
+const helmet = require("helmet");
+const connectDB = require("./config/db");
+const app = express();
+require("dotenv").config();
+connectDB();
+app.use(cors());
+app.use(helmet());
+app.use(express.json());
+app.use("/api/tasks", require("./routes/taskRoutes"));
+app.use("/api/auth", require("./routes/authRoutes"));
+module.exports = app;
